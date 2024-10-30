@@ -33,7 +33,7 @@ module.exports = (env, argv = {}) => {
 
         output: {
             filename: 'js/' + (isProduction ? 'min/' : '') + '[name].js',
-            path: path.resolve(__dirname, '../../acf-uppy/asset'),
+            path: path.resolve(__dirname, '../../upload-field-with-uppy-for-acf/asset'),
             publicPath: '/'
         },
 
@@ -84,7 +84,7 @@ module.exports = (env, argv = {}) => {
         optimization: {
             //https://github.com/webpack/webpack.js.org/blob/ac5f6b4da11d6745005526f7c37b0d2bf629682a/src/content/configuration/optimization.md#optimizationruntimechunk
             runtimeChunk: {
-                name: entrypoint => `runtime~${package.name}`
+                name: entrypoint => `runtime-${package.name}`
             },
 
             splitChunks: {

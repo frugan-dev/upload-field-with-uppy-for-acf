@@ -1,0 +1,117 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: upload-field-with-uppy-for-acf\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2024-10-30 12:28+0100\n"
+"PO-Revision-Date: 2024-10-30 12:35+0100\n"
+"Last-Translator: \n"
+"Language-Team: Italian\n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_ex;_x;_ex;_n:1,2;_n:1,2,4c;_nx:1,2;_nx:1,2,4c;_n_noop:1,2;_n_noop:1,2,4c;_nx_noop:1,2;_nx_noop:1,2,4c;esc_html__;esc_html_e;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x\n"
+"X-Poedit-Basepath: ..\n"
+"X-Crowdin-Project: upload-field-with-uppy-for-acf\n"
+"X-Crowdin-Project-ID: 732521\n"
+"X-Crowdin-Language: it\n"
+"X-Crowdin-File: upload-field-with-uppy-for-acf.pot\n"
+"X-Crowdin-File-ID: 22\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: *.rst\n"
+
+#: src/Bootstrap.php:96 src/Field.php:70
+msgid "Upload Field with Uppy for ACF"
+msgstr ""
+
+#: src/Bootstrap.php:98
+#, php-format
+msgid "%1$s plugin is required."
+msgstr "È richiesto il plugin %1$s ."
+
+#: src/Bootstrap.php:98
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: src/Field.php:77
+msgid "Uppy"
+msgstr ""
+
+#: src/Field.php:87
+msgid "Upload Field with Uppy for ACF is a WordPress plugin that adds a new \"Uppy\" custom field to the list of fields of the Advanced Custom Fields plugin."
+msgstr "Upload Field with Uppy for ACF è un plugin di WordPress che aggiunge un nuovo campo personalizzato \"Uppy\" all'elenco dei campi del plugin Advanced Custom Fields."
+
+#: src/Field.php:125
+msgid "There was a technical problem, please try again later."
+msgstr "Si è verificato un problema tecnico, riprova più tardi."
+
+#: src/Field.php:210 src/Field.php:319 src/Field.php:426 src/Field.php:606
+#: src/Field.php:628 src/Field.php:688 src/Field.php:707 src/Field.php:937
+#, php-format
+msgid "Error reading \"%1$s\""
+msgstr "Errore nel leggere \"%1$s\""
+
+#: src/Field.php:359
+#, php-format
+msgid "Error creating symlink_path \"%1$s\""
+msgstr "Errore nel creare symlink_path \"%1$s\""
+
+#: src/Field.php:467
+msgid "Max file size"
+msgstr "Dimensione massima file"
+
+#: src/Field.php:472 src/Field.php:493 src/Field.php:511
+#, php-format
+msgid "Default: %1$s"
+msgstr "Predefinito: %1$s"
+
+#: src/Field.php:486
+msgid "Allowed file types"
+msgstr "Tipi di file consentiti"
+
+#: src/Field.php:490
+msgid "Wildcards mime types (e.g. image/*), exact mime types (e.g. image/jpeg), or file extensions (e.g. .jpg)."
+msgstr "Caratteri jolly per i tipi di mime (ad esempio, immagine/*), tipi di mime esatti (ad esempio, immagine/jpeg) o estensioni di file (ad esempio, .jpg)."
+
+#: src/Field.php:491
+msgid "One value for each line."
+msgstr "Un valore per ogni riga."
+
+#: src/Field.php:504
+msgid "Uploads path"
+msgstr "Percorso di caricamento"
+
+#: src/Field.php:508
+msgid "Absolute path to the directory where to save all files."
+msgstr "Percorso assoluto alla directory in cui salvare tutti i file."
+
+#: src/Field.php:509
+msgid "It can also be outside the public directory."
+msgstr "Può anche essere al di fuori della directory pubblica."
+
+#: src/Field.php:805
+#, php-format
+msgid "Wrong tmp_path \"%1$s\" of file \"%2$s\""
+msgstr "Errato tmp_path \"%1$s\" del file \"%2$s\""
+
+#: src/Field.php:823
+#, php-format
+msgid "Error creating dest_path \"%1$s\""
+msgstr "Errore nel creare dest_path \"%1$s\""
+
+#: src/Field.php:845
+#, php-format
+msgid "Error moving file from \"%1$s\" to \"%2$s\""
+msgstr "Errore durante lo spostamento del file da \"%1$s\" a \"%2$s\""
+
+#: src/Middleware/Auth.php:28
+msgid "Unauthorized"
+msgstr "Non Autorizzato"
+
+#: src/Middleware/UploadDir.php:53
+msgid "Wrong headers"
+msgstr "Intestazioni sbagliate"

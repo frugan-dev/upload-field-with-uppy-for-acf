@@ -60,6 +60,8 @@ PHPSTAN_PRO_WEB_PORT ?=
 
 GITHUB_TOKEN ?=
 
+FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED ?= false
+
 MODE ?= develop
 
 DOCKER_COMPOSE=docker compose
@@ -180,6 +182,9 @@ endif
 	@echo "[wordpress] Creating symbolic links ($(MODE))"
 	@$(DOCKER_COMPOSE) exec -u$(WORDPRESS_CONTAINER_USER) $(WORDPRESS_CONTAINER_NAME) sh -c 'ln -sfn /tmp/$(PLUGIN_NAME)-plugin $${WORDPRESS_BASE_DIR:-/bitnami/wordpress}/wp-content/plugins/$(PLUGIN_NAME)'
 	@$(DOCKER_COMPOSE) exec -u$(WORDPRESS_CONTAINER_USER) $(WORDPRESS_CONTAINER_NAME) sh -c 'ln -sfn /tmp/$(PLUGIN_NAME)-plugin/tests/data/wp-cfm $${WORDPRESS_BASE_DIR:-/bitnami/wordpress}/wp-content/config'
+
+	@echo "[wordpress] Updating wp-config.php ($(MODE))"
+	@$(DOCKER_COMPOSE) exec -u$(WORDPRESS_CONTAINER_USER) $(WORDPRESS_CONTAINER_NAME) sh -c "sed -i '/define('\''FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED'\'',/d' $${WORDPRESS_BASE_DIR:-/bitnami/wordpress}/wp-config.php && sed -i '1a define('\''FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED'\'', ${FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED});' $${WORDPRESS_BASE_DIR:-/bitnami/wordpress}/wp-config.php"
 	
 	@echo "[wordpress] Installing dependencies ($(MODE))"
 # PHP 7.x and 8.x interpret composer.json's `extra.installer-paths` differently, perhaps due to different versions of Composer.

@@ -1,6 +1,0 @@
-<?php
-
-define('ACF_UPPY_VERSION', '0.1.0');
-define('ACF_UPPY_NAME', '');
-define('ACF_UPPY_NAME_UNDERSCORE', '');
-define('ACF_UPPY_FIELD_TYPE', 'uppy');

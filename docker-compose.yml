@@ -31,8 +31,8 @@ services:
       - ${PHPSTAN_PRO_WEB_PORT:-11111}:11111
     volumes:
       - wordpress_data:/bitnami/wordpress:rw
-      # `-plugin` suffix avoids conflicts w/ $AcfUppy->settings['tmpPath']
-      - ${PWD}/${PLUGIN_NAME:-acf-uppy}:/tmp/${PLUGIN_NAME:-acf-uppy}-plugin:rw
+      # `-plugin` suffix avoids conflicts
+      - ${PWD}/${PLUGIN_NAME:-upload-field-with-uppy-for-acf}:/tmp/${PLUGIN_NAME:-upload-field-with-uppy-for-acf}-plugin:rw
       - ${PWD}/tmp/certs:/certs
       - ${PWD}/tmp/phpstan-fixer:/tmp/phpstan-fixer:rw
     environment:

@@ -1,0 +1,96 @@
+[
+    {
+        "key": "group_666c1e5be8a3c",
+        "title": "Uppy",
+        "fields": [
+            {
+                "key": "field_6721f6b8c8503",
+                "label": "uppy",
+                "name": "uppy",
+                "aria-label": "",
+                "type": "upload_field_with_uppy_for_acf",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "max_file_size": 0,
+                "allowed_file_types": "",
+                "dest_path": "\/opt\/bitnami\/wordpress\/wp-content\/uploads\/uppy",
+                "allow_in_bindings": 0
+            },
+            {
+                "key": "field_666f5c7c5fa26",
+                "label": "repeater",
+                "name": "repeater",
+                "aria-label": "",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": 0,
+                "max": 0,
+                "layout": "table",
+                "button_label": "",
+                "hide_collapse": 0,
+                "collapse_all_repeater": 0,
+                "btn-icon-only": 0,
+                "sub_fields": [
+                    {
+                        "key": "field_666f5c965fa27",
+                        "label": "uppy",
+                        "name": "uppy",
+                        "aria-label": "",
+                        "type": "upload_field_with_uppy_for_acf",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "max_file_size": 0,
+                        "allowed_file_types": "",
+                        "dest_path": "\/opt\/bitnami\/wordpress\/wp-content\/uploads\/uppy",
+                        "allow_in_bindings": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "post"
+                }
+            ],
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "page"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "",
+        "show_in_rest": 0
+    }
+]

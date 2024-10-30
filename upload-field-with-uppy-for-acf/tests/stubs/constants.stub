@@ -1,0 +1,8 @@
+<?php
+
+define('FRUGAN_UFWUFACF_VERSION', '0.1.0');
+define('FRUGAN_UFWUFACF_BASENAME', 'dummy');
+define('FRUGAN_UFWUFACF_NAME', 'dummy');
+define('FRUGAN_UFWUFACF_NAME_UNDERSCORE', 'dummy');
+define('FRUGAN_UFWUFACF_URL', 'http://example.com');
+define('FRUGAN_UFWUFACF_PATH', __DIR__);

@@ -1,0 +1,25 @@
+<?php
+
+if (!function_exists('is_plugin_active')) {
+    function is_plugin_active($plugin) {
+        return false;
+    }
+}
+
+if (!function_exists('plugin_basename')) {
+    function plugin_basename($file) {
+        return $file;
+    }
+}
+
+if (!function_exists('plugin_dir_path')) {
+    function plugin_dir_path($file) {
+        return dirname($file) . '/';
+    }
+}
+
+if (!function_exists('plugin_dir_url')) {
+    function plugin_dir_url($file) {
+        return 'http://example.com/wp-content/plugins/' . basename($file) . '/';
+    }
+}

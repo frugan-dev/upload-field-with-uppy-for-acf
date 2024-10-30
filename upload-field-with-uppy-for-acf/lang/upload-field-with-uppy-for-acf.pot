@@ -1,0 +1,111 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: upload-field-with-uppy-for-acf\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2024-10-30 12:28+0100\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_ex;_x;_ex;_n:1,2;_n:1,2,4c;_nx:1,2;_nx:1,2,4c;_n_noop:1,2;_n_noop:1,2,4c;_nx_noop:1,2;_nx_noop:1,2,4c;esc_html__;esc_html_e;esc_html_x;esc_attr__;esc_attr_e;esc_attr_x\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-1: *.rst\n"
+
+#: src/Bootstrap.php:96 src/Field.php:70
+msgid "Upload Field with Uppy for ACF"
+msgstr ""
+
+#: src/Bootstrap.php:98
+#, php-format
+msgid "%1$s plugin is required."
+msgstr ""
+
+#: src/Bootstrap.php:98
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: src/Field.php:77
+msgid "Uppy"
+msgstr ""
+
+#: src/Field.php:87
+msgid "Upload Field with Uppy for ACF is a WordPress plugin that adds a new \"Uppy\" custom field to the list of fields of the Advanced Custom Fields plugin."
+msgstr ""
+
+#: src/Field.php:125
+msgid "There was a technical problem, please try again later."
+msgstr ""
+
+#: src/Field.php:210 src/Field.php:319 src/Field.php:426 src/Field.php:606
+#: src/Field.php:628 src/Field.php:688 src/Field.php:707 src/Field.php:937
+#, php-format
+msgid "Error reading \"%1$s\""
+msgstr ""
+
+#: src/Field.php:359
+#, php-format
+msgid "Error creating symlink_path \"%1$s\""
+msgstr ""
+
+#: src/Field.php:467
+msgid "Max file size"
+msgstr ""
+
+#: src/Field.php:472 src/Field.php:493 src/Field.php:511
+#, php-format
+msgid "Default: %1$s"
+msgstr ""
+
+#: src/Field.php:486
+msgid "Allowed file types"
+msgstr ""
+
+#: src/Field.php:490
+msgid "Wildcards mime types (e.g. image/*), exact mime types (e.g. image/jpeg), or file extensions (e.g. .jpg)."
+msgstr ""
+
+#: src/Field.php:491
+msgid "One value for each line."
+msgstr ""
+
+#: src/Field.php:504
+msgid "Uploads path"
+msgstr ""
+
+#: src/Field.php:508
+msgid "Absolute path to the directory where to save all files."
+msgstr ""
+
+#: src/Field.php:509
+msgid "It can also be outside the public directory."
+msgstr ""
+
+#: src/Field.php:805
+#, php-format
+msgid "Wrong tmp_path \"%1$s\" of file \"%2$s\""
+msgstr ""
+
+#: src/Field.php:823
+#, php-format
+msgid "Error creating dest_path \"%1$s\""
+msgstr ""
+
+#: src/Field.php:845
+#, php-format
+msgid "Error moving file from \"%1$s\" to \"%2$s\""
+msgstr ""
+
+#: src/Middleware/Auth.php:28
+msgid "Unauthorized"
+msgstr ""
+
+#: src/Middleware/UploadDir.php:53
+msgid "Wrong headers"
+msgstr ""

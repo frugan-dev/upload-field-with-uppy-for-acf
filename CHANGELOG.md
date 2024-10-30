@@ -1,25 +1,25 @@
-## [Unreleased](https://github.com/frugan-dev/acf-uppy/compare/v0.1.0...HEAD)
+## [Unreleased](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/compare/v0.1.0...HEAD)
 
 ### Merged
 
-- Features/ci [`#1`](https://github.com/frugan-dev/acf-uppy/pull/1)
+- Features/ci [`#1`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/pull/1)
 
 ### Commits
 
-- insert phpstan path and require phpstan-wordpress [`93edc67`](https://github.com/frugan-dev/acf-uppy/commit/93edc679764912e2c3e4b5c4ae2cf1d0b49f07cc)
-- static tests and release in ci [`43a51a3`](https://github.com/frugan-dev/acf-uppy/commit/43a51a3f69390baea9b4f4ff0c3829c36c8995ce)
-- Fixed destPath in AcfUppy getDestFiles() and getDestPaths() methods Updated README [`f55480c`](https://github.com/frugan-dev/acf-uppy/commit/f55480c2f9f018c7c250727e1e11a3b55ee991e3)
-- remove double composer cache [`0b3d251`](https://github.com/frugan-dev/acf-uppy/commit/0b3d251e8c13893c532432ac1ed0ca4b02859b1a)
-- there's no really need to build in another step [`5a495f8`](https://github.com/frugan-dev/acf-uppy/commit/5a495f86674ca42c48dc3902770ad2a12beaf548)
-- Applied hook filters to $hash in AcfUppyFieldV5.php [`9d3919e`](https://github.com/frugan-dev/acf-uppy/commit/9d3919e6c7ba5820c02b28de358c5caf5df42d6c)
-- tests in all branches really [`26122a6`](https://github.com/frugan-dev/acf-uppy/commit/26122a6a654d0ab9ff775f14828b3a0a1beed57f)
-- tests in all branches [`ff8c22f`](https://github.com/frugan-dev/acf-uppy/commit/ff8c22f04ea053b8a51e7a9443b45b531c9465cd)
+- insert phpstan path and require phpstan-wordpress [`93edc67`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/93edc679764912e2c3e4b5c4ae2cf1d0b49f07cc)
+- static tests and release in ci [`43a51a3`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/43a51a3f69390baea9b4f4ff0c3829c36c8995ce)
+- Fixed dest_path in AcfUppy get_dest_files() and get_dest_paths() methods Updated README [`f55480c`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/f55480c2f9f018c7c250727e1e11a3b55ee991e3)
+- remove double composer cache [`0b3d251`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/0b3d251e8c13893c532432ac1ed0ca4b02859b1a)
+- there's no really need to build in another step [`5a495f8`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/5a495f86674ca42c48dc3902770ad2a12beaf548)
+- Applied hook filters to $hash in AcfUppyFieldV5.php [`9d3919e`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/9d3919e6c7ba5820c02b28de358c5caf5df42d6c)
+- tests in all branches really [`26122a6`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/26122a6a654d0ab9ff775f14828b3a0a1beed57f)
+- tests in all branches [`ff8c22f`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/ff8c22f04ea053b8a51e7a9443b45b531c9465cd)
 
 ## v0.1.0 - 2021-01-03
 
 ### Commits
 
-- Initial commit [`e62cdd5`](https://github.com/frugan-dev/acf-uppy/commit/e62cdd555efe2fca843d1f746a11f45d698098ef)
+- Initial commit [`e62cdd5`](https://github.com/frugan-dev/upload-field-with-uppy-for-acf/commit/e62cdd555efe2fca843d1f746a11f45d698098ef)
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).

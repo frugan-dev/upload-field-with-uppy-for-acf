@@ -1,0 +1,7 @@
+{
+    "active_plugins": "a:12:{i:0;s:83:\"acf-repeater-flexible-content-collapser\/acf-repeater-flexible-content-collapser.php\";i:1;s:29:\"acf-repeater\/acf-repeater.php\";i:2;s:61:\"advanced-custom-fields-wpcli\/advanced-custom-fields-wpcli.php\";i:3;s:30:\"advanced-custom-fields\/acf.php\";i:4;s:33:\"classic-editor\/classic-editor.php\";i:5;s:23:\"debug-bar\/debug-bar.php\";i:6;s:23:\"plugin-check\/plugin.php\";i:7;s:51:\"rewrite-rules-inspector\/rewrite-rules-inspector.php\";i:8;s:65:\"upload-field-with-uppy-for-acf\/upload-field-with-uppy-for-acf.php\";i:9;s:41:\"wordpress-kint-debugger\/kint-debugger.php\";i:10;s:17:\"wp-cfm\/wp-cfm.php\";i:12;s:29:\"wp-mail-smtp\/wp_mail_smtp.php\";}",
+    "classic-editor-allow-users": "allow",
+    "classic-editor-replace": "block",
+    "wp_debugging": "a:3:{s:8:\"wp_debug\";s:1:\"1\";s:16:\"wp_debug_display\";s:1:\"1\";s:30:\"wp_disable_fatal_error_handler\";s:1:\"1\";}",
+    ".label": "default"
+}
