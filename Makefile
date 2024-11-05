@@ -92,6 +92,7 @@ endif
 
 check:
 	@echo "Checking requirements"
+	@command -v mkcert >/dev/null 2>&1 || { echo >&2 "mkcert is required but not installed. Aborting."; exit 1; }
 	@command -v curl >/dev/null 2>&1 || { echo >&2 "curl is required but not installed. Aborting."; exit 1; }
 	@command -v git >/dev/null 2>&1 || { echo >&2 "git is required but not installed. Aborting."; exit 1; }
 	@command -v rsync >/dev/null 2>&1 || { echo >&2 "rsync is required but not installed. Aborting."; exit 1; }
