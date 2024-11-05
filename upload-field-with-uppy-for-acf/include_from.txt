@@ -5,6 +5,7 @@
 + src/
 + src/**
 + symlink/
+- symlink/.gitignore
 + symlink/**
 + vendor/
 - vendor/bin/
