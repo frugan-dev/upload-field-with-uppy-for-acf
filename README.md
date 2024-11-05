@@ -28,7 +28,7 @@ __Upload Field with Uppy for ACF__ is a WordPress plugin that adds a new `Uppy` 
 <sub><i>
 _Note:_  
 _* If you need to support older versions of PHP use [v1.x](../../tree/support/v1.x)._  
-_** If your environment doesn't support APCu, you can try setting the cache to `file` with the `uppy_field_for_acf/cache` filter, although `file` is not recommended in production (see [here](https://github.com/ankitpokhrel/tus-php/issues/408#issuecomment-1250229371))._
+_** If your environment doesn't support APCu, you can try setting the cache to `file` with the `upload_field_with_uppy_for_acf/cache` filter, although `file` is not recommended in production (see [here](https://github.com/ankitpokhrel/tus-php/issues/408#issuecomment-1250229371))._
 </i></sub>
 
 ## Features
@@ -171,20 +171,20 @@ For more information, see filename-based cache busting on [Nginx](https://github
 ## Actions
 
 <details>
-<summary>uppy_field_for_acf/download_fallback</summary>
+<summary>upload_field_with_uppy_for_acf/download_fallback</summary>
 
 ```php
-do_action( 'uppy_field_for_acf/download_fallback', $postId );
+do_action(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_fallback', $postId);
 ```
 - `$postId` _(int)_: The ID of the post containing _Upload Field with Uppy for ACF_.
 
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_fallback/type={$postType}</summary>
+<summary>upload_field_with_uppy_for_acf/download_fallback/type={$postType}</summary>
 
 ```php
-do_action( 'uppy_field_for_acf/download_fallback/type={$postType}', $postId );
+do_action(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_fallback/type={$postType}', $postId);
 ```
 - `$postId` _(int)_: The ID of the post containing _Upload Field with Uppy for ACF_.
 - `$postType` _(string)_: The type of the post containing _Upload Field with Uppy for ACF_.
@@ -194,24 +194,24 @@ do_action( 'uppy_field_for_acf/download_fallback/type={$postType}', $postId );
 ## Filters
 
 <details>
-<summary>uppy_field_for_acf/dest_path</summary>
+<summary>upload_field_with_uppy_for_acf/dest_path</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/dest_path', $dest_path );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/dest_path', $dest_path);
 ```
 - `$dest_path` _(string)_: The file destination absolute base path.  
-Default: `{ABSPATH}wp-content/uploads/upload-field-with-uppy-for-acf`.
+Default: `{ABSPATH}wp-content/uploads/uppy`.
 
 </details>
 
 <details>
-<summary>uppy_field_for_acf/dest_path/type={$postType}</summary>
+<summary>upload_field_with_uppy_for_acf/dest_path/type={$postType}</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/dest_path/type={$postType}', $dest_path, $postId, $field );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/dest_path/type={$postType}', $dest_path, $postId, $field);
 ```
 - `$dest_path` _(string)_: The file destination absolute base path.  
-Default: `{ABSPATH}wp-content/uploads/upload-field-with-uppy-for-acf`.
+Default: `{ABSPATH}wp-content/uploads/uppy`.
 - `$postType` _(string)_: The type of the post containing _Upload Field with Uppy for ACF_.
 - `$postId` _(int)_: The ID of the post containing _Upload Field with Uppy for ACF_.
 - `$field` _(array)_: The field array holding all the field options.
@@ -219,10 +219,10 @@ Default: `{ABSPATH}wp-content/uploads/upload-field-with-uppy-for-acf`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/tmp_path</summary>
+<summary>upload_field_with_uppy_for_acf/tmp_path</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/tmp_path', $tmp_path );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/tmp_path', $tmp_path);
 ```
 - `$tmp_path` _(string)_: The file temporary absolute path.  
 Default: `{sys_get_temp_dir()}/upload-field-with-uppy-for-acf/{get_current_user_id()}`.
@@ -230,10 +230,10 @@ Default: `{sys_get_temp_dir()}/upload-field-with-uppy-for-acf/{get_current_user_
 </details>
 
 <details>
-<summary>uppy_field_for_acf/symlink_url</summary>
+<summary>upload_field_with_uppy_for_acf/symlink_url</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/symlink_url', $symlink_url );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/symlink_url', $symlink_url);
 ```
 - `$symlink_url` _(string)_: The symlinks absolute base url.  
 Default: `{site_url()}/wp-content/plugins/upload-field-with-uppy-for-acf/symlink`.
@@ -241,10 +241,10 @@ Default: `{site_url()}/wp-content/plugins/upload-field-with-uppy-for-acf/symlink
 </details>
 
 <details>
-<summary>uppy_field_for_acf/symlink_path</summary>
+<summary>upload_field_with_uppy_for_acf/symlink_path</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/symlink_path', $symlink_path );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/symlink_path', $symlink_path);
 ```
 - `$symlink_path` _(string)_: The symlinks absolute base path.  
 Default: `{ABSPATH}wp-content/plugins/upload-field-with-uppy-for-acf/symlink`.
@@ -252,21 +252,21 @@ Default: `{ABSPATH}wp-content/plugins/upload-field-with-uppy-for-acf/symlink`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/base_path</summary>
+<summary>upload_field_with_uppy_for_acf/base_path</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/base_path', $basePath );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/base_path', $basePath);
 ```
 - `$basePath` _(string)_: The base url endpoint.  
-Default: `upload-field-with-uppy-for-acf`.
+Default: `uppy`.
 
 </details>
 
 <details>
-<summary>uppy_field_for_acf/api_path</summary>
+<summary>upload_field_with_uppy_for_acf/api_path</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/api_path', $apiPath );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/api_path', $apiPath);
 ```
 - `$apiPath` _(string)_: The TUS base url endpoint.  
 Default: `wp-tus`.
@@ -274,10 +274,10 @@ Default: `wp-tus`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/cache</summary>
+<summary>upload_field_with_uppy_for_acf/cache</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/cache', $cacheType );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/cache', $cacheType);
 ```
 - `$cacheType` _(string)_: The TUS cache type.  
 Options: `redis`, `apcu` or `file`.  
@@ -286,10 +286,10 @@ Default: `apcu`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/cache_ttl</summary>
+<summary>upload_field_with_uppy_for_acf/cache_ttl</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/cache_ttl', $cache_ttl );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/cache_ttl', $cache_ttl);
 ```
 - `$cache_ttl` _(string)_: The TUS cache TTL in secs.  
 Default: `86400`.
@@ -297,10 +297,10 @@ Default: `86400`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/file_name_exists</summary>
+<summary>upload_field_with_uppy_for_acf/file_name_exists</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/file_name_exists', $fileName, $dest_path, $pathinfo, $counter );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/file_name_exists', $fileName, $dest_path, $pathinfo, $counter);
 ```
 - `$fileName` _(string)_: The file name renamed.  
 Default: `{$pathinfo['filename']}-{$counter}.{$pathinfo['extension']}`.
@@ -311,10 +311,10 @@ Default: `{$pathinfo['filename']}-{$counter}.{$pathinfo['extension']}`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/file_name</summary>
+<summary>upload_field_with_uppy_for_acf/file_name</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/file_name', $fileName, $dest_path );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/file_name', $fileName, $dest_path);
 ```
 - `$fileName` _(string)_: The file name. 
 - `$dest_path` _(string)_: The directory absolute path to the file. 
@@ -322,10 +322,10 @@ apply_filters( 'uppy_field_for_acf/file_name', $fileName, $dest_path );
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_hash</summary>
+<summary>upload_field_with_uppy_for_acf/download_hash</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_hash', $hash, $destFile, $postId );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_hash', $hash, $destFile, $postId);
 ```
 - `$hash` _(int|string)_: The hash used in download url.  
 Default: `wp_hash( $destFile )`.
@@ -335,10 +335,10 @@ Default: `wp_hash( $destFile )`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_hash/type={$postType}</summary>
+<summary>upload_field_with_uppy_for_acf/download_hash/type={$postType}</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_hash/type={$postType}', $hash, $destFile, $postId );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_hash/type={$postType}', $hash, $destFile, $postId);
 ```
 - `$hash` _(string)_: The hash used in download url.  
 Default: `wp_hash( $destFile )`.
@@ -349,10 +349,10 @@ Default: `wp_hash( $destFile )`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_allow</summary>
+<summary>upload_field_with_uppy_for_acf/download_allow</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_allow', $allow, $destFile, $postId );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_allow', $allow, $destFile, $postId);
 ```
 - `$allow` _(bool)_: Whether or not to allow the file download. 
 - `$destFile` _(string)_: The absolute path of the file. 
@@ -361,10 +361,10 @@ apply_filters( 'uppy_field_for_acf/download_allow', $allow, $destFile, $postId )
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_allow/type={$postType}</summary>
+<summary>upload_field_with_uppy_for_acf/download_allow/type={$postType}</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_allow/type={$postType}', $allow, $destFile, $postId );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_allow/type={$postType}', $allow, $destFile, $postId);
 ```
 - `$allow` _(bool)_: Whether or not to allow the file download. 
 - `$postType` _(string)_: The type of the post containing _Upload Field with Uppy for ACF_.
@@ -374,10 +374,10 @@ apply_filters( 'uppy_field_for_acf/download_allow/type={$postType}', $allow, $de
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_symlink_delete_days</summary>
+<summary>upload_field_with_uppy_for_acf/download_symlink_delete_days</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_symlink_delete_days', $days );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_symlink_delete_days', $days);
 ```
 - `$days` _(int)_: Number of days before old symlinks are deleted.  
 Default: `1`.
@@ -385,10 +385,10 @@ Default: `1`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/download_symlink_delete_max</summary>
+<summary>upload_field_with_uppy_for_acf/download_symlink_delete_max</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/download_symlink_delete_max', $max );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/download_symlink_delete_max', $max);
 ```
 - `$max` _(int)_: How many old symlinks need to be deleted on each request.  
 Default: `10`.
@@ -396,10 +396,10 @@ Default: `10`.
 </details>
 
 <details>
-<summary>uppy_field_for_acf/custom_post_types</summary>
+<summary>upload_field_with_uppy_for_acf/custom_post_types</summary>
 
 ```php
-apply_filters( 'uppy_field_for_acf/custom_post_types', $postTypes );
+apply_filters(FRUGAN_UFWUFACF_NAME_UNDERSCORE.'/custom_post_types', $postTypes);
 ```
 - `$postTypes` _(array)_: The types of the post containing _Upload Field with Uppy for ACF_.  
 Default: `[]`.

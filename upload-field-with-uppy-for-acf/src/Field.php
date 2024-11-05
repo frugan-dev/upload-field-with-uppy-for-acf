@@ -40,8 +40,6 @@ class Field extends \acf_field
      */
     public $show_in_rest = true;
 
-    public string $slug;
-
     public ?Server $server = null;
 
     public array $paths = [];
@@ -58,8 +56,6 @@ class Field extends \acf_field
      */
     public function __construct()
     {
-        $this->slug = 'uppy';
-
         /*
          * Field type reference used in PHP and JS code.
          *
@@ -104,9 +100,25 @@ class Field extends \acf_field
 
         $wp_upload_dir = wp_upload_dir();
 
+        $this->env = [
+            'version' => FRUGAN_UFWUFACF_VERSION,
+            // @phpstan-ignore-next-line
+            'slug' => \defined('FRUGAN_UFWUFACF_SLUG') && \is_string(FRUGAN_UFWUFACF_SLUG) && !empty(FRUGAN_UFWUFACF_SLUG) ? FRUGAN_UFWUFACF_SLUG : 'uppy',
+            'url' => FRUGAN_UFWUFACF_URL,
+            'path' => FRUGAN_UFWUFACF_PATH,
+            'debug' => WP_DEBUG,
+            'locale' => get_locale(),
+            'tmp_path' => apply_filters($this->name.'/tmp_path', trailingslashit(sys_get_temp_dir()).trailingslashit(FRUGAN_UFWUFACF_NAME).get_current_user_id()),
+            'symlink_url' => apply_filters($this->name.'/symlink_url', FRUGAN_UFWUFACF_URL.'symlink'),
+            'symlink_path' => apply_filters($this->name.'/symlink_path', FRUGAN_UFWUFACF_PATH.'symlink'),
+            'api_path' => home_url('/'.apply_filters($this->name.'/api_path', 'wp-tus')),
+            'cache_ttl' => apply_filters($this->name.'/cache_ttl', $this->server->getCache()->getTtl()), // default: 86400
+            'cache_busting' => \defined('FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED') && !empty(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED) && !is_numeric(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED) && filter_var(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ? true : false,
+        ];
+
         // Defaults for your custom user-facing settings for this field type.
         $this->defaults = [
-            'dest_path' => apply_filters($this->name.'/dest_path', trailingslashit($wp_upload_dir['basedir']).$this->slug),
+            'dest_path' => apply_filters($this->name.'/dest_path', trailingslashit($wp_upload_dir['basedir']).$this->env['slug']),
             'max_file_size' => 10,
             // https://www.iana.org/assignments/media-types/media-types.xhtml
             'allowed_file_types' => null,
@@ -123,20 +135,6 @@ class Field extends \acf_field
          */
         $this->l10n = [
             'technical_problem' => __('There was a technical problem, please try again later.', 'upload-field-with-uppy-for-acf'),
-        ];
-
-        $this->env = [
-            'version' => FRUGAN_UFWUFACF_VERSION,
-            'url' => FRUGAN_UFWUFACF_URL,
-            'path' => FRUGAN_UFWUFACF_PATH,
-            'debug' => WP_DEBUG,
-            'locale' => get_locale(),
-            'tmp_path' => apply_filters($this->name.'/tmp_path', trailingslashit(sys_get_temp_dir()).trailingslashit($this->slug).get_current_user_id()),
-            'symlink_url' => apply_filters($this->name.'/symlink_url', FRUGAN_UFWUFACF_URL.'symlink'),
-            'symlink_path' => apply_filters($this->name.'/symlink_path', FRUGAN_UFWUFACF_PATH.'symlink'),
-            'api_path' => home_url('/'.apply_filters($this->name.'/api_path', 'wp-tus')),
-            'cache_ttl' => apply_filters($this->name.'/cache_ttl', $this->server->getCache()->getTtl()), // default: 86400
-            'cache_busting' => \defined('FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED') && !empty(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED) && !is_numeric(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED) && filter_var(FRUGAN_UFWUFACF_CACHE_BUSTING_ENABLED, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ? true : false,
         ];
 
         /*
@@ -257,7 +255,7 @@ class Field extends \acf_field
 
         // add_rewrite_tag( '%tus%', '([^&]+)' );
         add_rewrite_rule('^'.apply_filters($this->name.'/api_path', 'wp-tus').'/?([^/]*)/?([^/]*)/?$', 'index.php?tus=$matches[1]', 'top');
-        add_rewrite_rule('^'.apply_filters($this->name.'/base_path', $this->slug).'/([^/]+)/([0-9]{1,})/([^/]+)/?$', 'index.php?'.$this->name.'_action=$matches[1]&page_id=$matches[2]&'.$this->name.'_pubkey=$matches[3]', 'top');
+        add_rewrite_rule('^'.apply_filters($this->name.'/base_path', $this->env['slug']).'/([^/]+)/([0-9]{1,})/([^/]+)/?$', 'index.php?'.$this->name.'_action=$matches[1]&page_id=$matches[2]&'.$this->name.'_pubkey=$matches[3]', 'top');
     }
 
     public function parse_request($wp): void
@@ -281,14 +279,14 @@ class Field extends \acf_field
                 $fieldsObj = get_field_objects($postId);
 
                 if (!empty($fieldsObj)) {
-                    $destFiles = $this->get_dest_files($fieldsObj, $postId);
+                    $dest_files = $this->get_dest_files($fieldsObj, $postId);
 
-                    if (!empty($destFiles)) {
-                        foreach ($destFiles as $destFile) {
-                            $hash = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_hash', wp_hash($destFile), $destFile, $postId);
+                    if (!empty($dest_files)) {
+                        foreach ($dest_files as $dest_file) {
+                            $hash = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_hash', wp_hash($dest_file), $dest_file, $postId);
 
                             if (!empty($postType)) {
-                                $hash = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_hash/type='.$postType, $hash, $destFile, $postId);
+                                $hash = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_hash/type='.$postType, $hash, $dest_file, $postId);
                             }
 
                             if ($wp->query_vars[$this->name.'_pubkey'] === $hash) {
@@ -299,10 +297,10 @@ class Field extends \acf_field
                         }
 
                         if (!empty($found)) {
-                            $allow = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_allow', true, $destFile, $postId);
+                            $allow = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_allow', true, $dest_file, $postId);
 
                             if (!empty($postType)) {
-                                $allow = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_allow/type='.$postType, $allow, $destFile, $postId);
+                                $allow = apply_filters($this->name.'/'.$wp->query_vars[$this->name.'_action'].'_allow/type='.$postType, $allow, $dest_file, $postId);
                             }
 
                             if (!empty($allow)) {
@@ -350,7 +348,7 @@ class Field extends \acf_field
                                     $symlink_path = readlink($symlink_path);
                                 }
 
-                                $symlinkFile = $symlink_path.basename($destFile);
+                                $symlinkFile = $symlink_path.basename($dest_file);
 
                                 if (false === wp_mkdir_p($symlink_path)) {
                                     wp_die(
@@ -365,13 +363,13 @@ class Field extends \acf_field
                                 }
 
                                 if (!is_link($symlinkFile)) {
-                                    if (true !== @symlink($destFile, $symlinkFile)) {
-                                        @exec('ln -s '.escapeshellcmd($destFile).' '.escapeshellcmd($symlinkFile), $out, $status);
+                                    if (true !== @symlink($dest_file, $symlinkFile)) {
+                                        @exec('ln -s '.escapeshellcmd($dest_file).' '.escapeshellcmd($symlinkFile), $out, $status);
                                     }
                                 }
 
                                 if (is_link($symlinkFile)) {
-                                    wp_safe_redirect(trailingslashit($this->env['symlink_url']).trailingslashit($wp->query_vars[$this->name.'_pubkey']).basename($destFile));
+                                    wp_safe_redirect(trailingslashit($this->env['symlink_url']).trailingslashit($wp->query_vars[$this->name.'_pubkey']).basename($dest_file));
 
                                     exit;
                                 }
@@ -381,7 +379,7 @@ class Field extends \acf_field
                                 // https://github.com/diversen/http-send-file
                                 // https://github.com/apfelbox/PHP-File-Download
                                 try {
-                                    (new Sendfile())->send($destFile);
+                                    (new Sendfile())->send($dest_file);
 
                                     exit;
                                 } catch (\Exception $e) {
@@ -529,20 +527,20 @@ class Field extends \acf_field
     {
         global $post;
 
-        $destFile = '';
+        $dest_file = '';
         $hash = '';
 
         if (!empty($field['value'])) {
             $dest_path = !empty($field['dest_path']) ? trailingslashit($field['dest_path']) : apply_filters($this->name.'/dest_path/type='.$post->post_type, trailingslashit($this->defaults['dest_path']), $post->ID, $field);
             $dest_path .= trailingslashit($post->ID).trailingslashit(sanitize_file_name($field['key']));
 
-            $destFile = $dest_path.$field['value'];
+            $dest_file = $dest_path.$field['value'];
 
-            if (file_exists($destFile)) {
+            if (file_exists($dest_file)) {
                 $found = true;
 
-                $hash = apply_filters($this->name.'/download_hash', wp_hash($destFile), $destFile, $post->ID);
-                $hash = apply_filters($this->name.'/download_hash/type='.$post->post_type, $hash, $destFile, $post->ID);
+                $hash = apply_filters($this->name.'/download_hash', wp_hash($dest_file), $dest_file, $post->ID);
+                $hash = apply_filters($this->name.'/download_hash/type='.$post->post_type, $hash, $dest_file, $post->ID);
             }
         }
 
@@ -570,13 +568,7 @@ class Field extends \acf_field
 				<a data-field-name="<?php echo esc_attr($field['name']); ?>" class="UppyDelete" href="javascript:;">
 					<span class="dashicons dashicons-trash"></span>
 				</a>
-				<a href="
-				<?php
-                echo esc_url(
-                    home_url('/'.apply_filters($this->name.'/base_path', $this->slug).'/download/'.trailingslashit($post->ID).trailingslashit($hash))
-                );
-			    ?>
-				"><?php echo esc_html($field['value']); ?></a> (<?php echo esc_html(size_format((int) filesize($destFile), 2)); ?>)
+				<a href="<?php echo esc_url(home_url('/'.apply_filters($this->name.'/base_path', $this->env['slug']).'/download/'.trailingslashit($post->ID).trailingslashit($hash))); ?>"><?php echo esc_html($field['value']); ?></a> (<?php echo esc_html(size_format((int) filesize($dest_file), 2)); ?>)
 				<?php
 			}
         ?>
@@ -926,7 +918,7 @@ class Field extends \acf_field
             $dest_paths = $this->get_dest_paths($fieldsObj, $postId);
 
             if (!empty($dest_paths)) {
-                $destFiles = $this->get_dest_files($fieldsObj, $postId);
+                $dest_files = $this->get_dest_files($fieldsObj, $postId);
 
                 foreach ($dest_paths as $dest_path) {
                     if (is_dir($dest_path)) {
@@ -939,7 +931,7 @@ class Field extends \acf_field
 
                         foreach ($paths as $path) {
                             if (is_file($path)) {
-                                if (\in_array($path, $destFiles, true)) {
+                                if (\in_array($path, $dest_files, true)) {
                                     continue;
                                 }
 
@@ -966,25 +958,23 @@ class Field extends \acf_field
         delete_option('rewrite_rules');
     }
 
-    public function get_sub_values(array $values, string $fieldName, array $returns = []): array
+    public function get_sub_values(array $values, string $fieldName): array
     {
-        if (!empty($values) && !empty($fieldName)) {
-            foreach ($values as $subValues) {
-                foreach ($subValues as $name => $value) {
-                    if ($name === $fieldName && !empty($value)) {
-                        $returns[] = $value;
-                    } elseif (\is_array($value)) {
-                        $returns += $this->get_sub_values($value, $fieldName, $returns);
-                    }
-                }
+        $returns = [];
+
+        array_walk_recursive($values, static function ($value, $key) use ($fieldName, &$returns): void {
+            if ($key === $fieldName && !\is_array($value)) {
+                $returns[] = $value;
             }
-        }
+        });
 
         return $returns;
     }
 
-    public function get_dest_files(array $fieldsObj, int $postId, array $values = [], array $returns = []): array
+    public function get_dest_files(array $fieldsObj, int $postId, array $values = []): array
     {
+        $returns = [];
+
         if (!empty($fieldsObj)) {
             $postType = get_post_type($postId);
 
@@ -1006,7 +996,7 @@ class Field extends \acf_field
                         $values = $fieldObj['value'];
                     }
 
-                    $returns += $this->get_dest_files($fieldObj['sub_fields'], $postId, $values, $returns);
+                    $returns = array_merge($returns, $this->get_dest_files($fieldObj['sub_fields'], $postId, $values));
                 }
             }
         }
@@ -1014,8 +1004,10 @@ class Field extends \acf_field
         return $returns;
     }
 
-    public function get_dest_paths(array $fieldsObj, int $postId, bool $fullPath = true, array $returns = []): array
+    public function get_dest_paths(array $fieldsObj, int $postId, bool $fullPath = true): array
     {
+        $returns = [];
+
         if (!empty($fieldsObj)) {
             $postType = get_post_type($postId);
 
@@ -1030,7 +1022,7 @@ class Field extends \acf_field
 
                     $returns[] = $dest_path;
                 } elseif (!empty($fieldObj['sub_fields'])) {
-                    $returns += $this->get_dest_paths($fieldObj['sub_fields'], $postId, $fullPath, $returns);
+                    $returns = array_merge($returns, $this->get_dest_paths($fieldObj['sub_fields'], $postId, $fullPath));
                 }
             }
         }

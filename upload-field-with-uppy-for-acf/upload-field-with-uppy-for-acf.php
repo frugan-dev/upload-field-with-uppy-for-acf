@@ -41,4 +41,8 @@ define('FRUGAN_UFWUFACF_NAME_UNDERSCORE', str_replace('-', '_', FRUGAN_UFWUFACF_
 define('FRUGAN_UFWUFACF_URL', plugin_dir_url(__FILE__));
 define('FRUGAN_UFWUFACF_PATH', plugin_dir_path(__FILE__));
 
+if (!defined('FRUGAN_UFWUFACF_SLUG')) {
+    define('FRUGAN_UFWUFACF_SLUG', 'uppy');
+}
+
 Bootstrap::get_instance();

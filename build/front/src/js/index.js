@@ -63,7 +63,7 @@ import prettierBytes from '@transloadit/prettier-bytes';
     
                         //https://stackoverflow.com/a/44475397/3929620
                         //https://dmitripavlutin.com/replace-all-string-occurrences-javascript/
-                        fieldNameArr.forEach(function(item, i){
+                        fieldNameArr.forEach((item, i) => {
                             fieldName += item
     
                             if(this.arrayKeyExists(i, slicedIds)) {
@@ -72,7 +72,7 @@ import prettierBytes from '@transloadit/prettier-bytes';
                         })
                     }
                 }
-    
+
                 if( !expr.test(fieldName) ) {
     
                     //https://stackoverflow.com/a/3261380/3929620
@@ -167,7 +167,7 @@ import prettierBytes from '@transloadit/prettier-bytes';
             //https://gomakethings.com/listening-for-click-events-with-vanilla-javascript/
             //https://medium.com/@florenceliang/javascript-event-delegation-and-event-target-vs-event-currenttarget-c9680c3a46d1
             //https://stackoverflow.com/a/55470424/3929620
-            document.addEventListener('click', function(e) {
+            document.addEventListener('click', (e) => {
                 for (var target = e.target; target && target != this; target = target.parentNode) {
                     if (target.matches('.UppyDelete')) {
                         e.preventDefault();
@@ -193,7 +193,7 @@ import prettierBytes from '@transloadit/prettier-bytes';
                                 
                                     //https://stackoverflow.com/a/44475397/3929620
                                     //https://dmitripavlutin.com/replace-all-string-occurrences-javascript/
-                                    fieldNameArr.forEach(function(item, i){
+                                    fieldNameArr.forEach((item, i) => {
                                         fieldName += item
                                     
                                         if(this.arrayKeyExists(i, slicedIds)) {
@@ -257,7 +257,7 @@ import prettierBytes from '@transloadit/prettier-bytes';
 
         //https://github.com/transloadit/uppy/issues/1575#issuecomment-500245017
         resetFilesObj(files) {
-            Object.keys(files).forEach(function(key){
+            Object.keys(files).forEach((key) => {
                 delete files[key];
             })
         }
